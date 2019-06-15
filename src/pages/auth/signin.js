@@ -40,8 +40,19 @@ const Signin = ({ setUser, setToken, history }) => {
         history.push('/pedidos')
       }, 300);
     } catch (error) {
-      console.log('error', error.response)
-      setError(error.response ? error.response.data.error : error.message)
+      console.log('error', error)
+      if (error.response) {
+        if (error.response.code >= 500) {
+          setError('Desculpe, houve um problema com o nosso servidor, estamos resolvendo. Por favor, tente mais tarde.')
+          return
+        }
+        if (error.response.code >= 400) {
+          setError('O usuário ou senha está incorreto, verique seus dados.')
+          return
+        }
+      }
+
+      setError('Houve um problema de rede, por favor, verifique sua conexão.')
       setTimeout(async () => {
         setLoading(false);
       }, 300);
@@ -73,14 +84,14 @@ const Signin = ({ setUser, setToken, history }) => {
             />
 
             <button
-              className={`btn btn-primary btn-block btn-lg ${
+              className={`btn btn-primary btn-block btn-lg text-bold ${
                 loading ? "loading" : ""
               }`}
               type="submit"
             >
               Entrar
             </button>
-            <span>
+            <span className="text-justify">
               {error}
             </span>
           </StyledForm>
