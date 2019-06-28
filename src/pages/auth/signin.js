@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import * as Yup from "yup";
 import api from "api";
 
-import logo from "images/logo.svg";
+// import logo from "images/logo.svg";
 import {
   Container,
   LogoImage,
@@ -64,7 +64,7 @@ const Signin = ({ setUser, setToken, history }) => {
       <Background />
       <Container>
         <div className="content full-overlay">
-          <LogoImage src={logo} alt="Logo Delivery" />
+          <LogoImage src={process.env.PUBLIC_URL + "/assets/images/logo.svg"} alt="Logo Delivery" />
 
           <StyledForm
             schema={schema}

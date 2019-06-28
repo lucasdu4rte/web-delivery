@@ -1,11 +1,11 @@
 import React from "react";
-import logo from "images/logo.png";
+// import logo from "images/logo.png";
 const NavBar = () => {
   return (
     <header className="navbar px-2 py-2 " style={{ background: "#0b2031" }}>
       <section className="navbar-section">
         <a href="..." className="navbar-brand mr-2">
-          <img src={logo} alt="" />
+          <img src={process.env.PUBLIC_URL + 'assets/images/logo.png'} alt="" />
         </a>
         <h5 className="text-light">Pizzaria Don Juan</h5>
       </section>

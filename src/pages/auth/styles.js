@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Form, Input } from "@rocketseat/unform";
-import fundo from "images/fundo.jpg";
+// import fundo from "images/fundo.jpg";
 
 export const Background = styled.div`
   position: absolute;
@@ -9,7 +9,7 @@ export const Background = styled.div`
   height: 100%;
 
   background: black;
-  background-image: url(${fundo});
+  background-image: url(${process.env.PUBLIC_URL + 'assets/images/fundo.jpg'});
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
