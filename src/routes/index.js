@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Signin from "pages/auth/signin";
 import Orders from "pages/orders";
 import { AuthConsumer } from "providers/AuthComponent";
+import PrivateRoute from "./privateRoute";
 
 const AllRoutes = () => (
   <Router>
@@ -12,7 +13,8 @@ const AllRoutes = () => (
         {props => (
           <>
             <Route exact path="/" component={(routeProps) => <Signin {...props} {...routeProps} />} />
-            <Route
+            <PrivateRoute
+              {...props}
               exact
               path="/pedidos"
               component={(routeProps) => <Orders {...props} {...routeProps} />}

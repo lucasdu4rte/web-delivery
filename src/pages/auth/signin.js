@@ -33,6 +33,13 @@ const Signin = ({ setUser, setToken, history }) => {
 
       console.log('responseData', responseData)
 
+      if (responseData.user && responseData.user.type !== 'admin') {
+        setError('Desculpe, esta area é somente para administradores.')
+        setLoading(false);
+
+        return
+      }
+
       setTimeout(async () => {
         setLoading(false);
         setUser(responseData.user)
@@ -74,13 +81,13 @@ const Signin = ({ setUser, setToken, history }) => {
             <StyledInput
               className="form-input input-lg"
               name="email"
-              placeholder="Seu email"
+              placeholder="Email"
             />
             <StyledInput
               className="form-input input-lg"
               name="password"
               type="password"
-              placeholder="Sua senha"
+              placeholder="Senha"
             />
 
             <button
@@ -91,9 +98,11 @@ const Signin = ({ setUser, setToken, history }) => {
             >
               Entrar
             </button>
-            <span className="text-justify">
-              {error}
-            </span>
+            <div style={{ minHeight: 200 }}>
+              <span className="text-justify">
+                {error}
+              </span>
+            </div>
           </StyledForm>
         </div>
       </Container>
