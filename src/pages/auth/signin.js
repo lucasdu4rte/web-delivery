@@ -22,44 +22,44 @@ const schema = Yup.object().shape({
 
 const Signin = ({ setUser, setToken, history }) => {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   async function handleSubmit(data) {
     setLoading(true);
-    setError('')
+    setError("");
 
     try {
-      const {data: responseData} = await api.post("/sessions", data)
+      const { data: responseData } = await api.post("/sessions", data);
 
-      console.log('responseData', responseData)
-
-      if (responseData.user && responseData.user.type !== 'admin') {
-        setError('Desculpe, esta area é somente para administradores.')
+      if (responseData.user && responseData.user.type !== "admin") {
+        setError("Desculpe, esta area é somente para administradores.");
         setLoading(false);
 
-        return
+        return;
       }
 
       setTimeout(async () => {
         setLoading(false);
-        setUser(responseData.user)
-        setToken(responseData.token)
-        history.push('/pedidos')
+        setUser(responseData.user);
+        setToken(responseData.token);
+        history.push("/pedidos");
       }, 300);
     } catch (error) {
-      console.log('error', error)
+      console.log("error", error);
       if (error.response) {
         if (error.response.code >= 500) {
-          setError('Desculpe, houve um problema com o nosso servidor, estamos resolvendo. Por favor, tente mais tarde.')
-          return
+          setError(
+            "Desculpe, houve um problema com o nosso servidor, estamos resolvendo. Por favor, tente mais tarde."
+          );
+          return;
         }
         if (error.response.code >= 400) {
-          setError('O usuário ou senha está incorreto, verique seus dados.')
-          return
+          setError("O usuário ou senha está incorreto, verique seus dados.");
+          return;
         }
       }
 
-      setError('Houve um problema de rede, por favor, verifique sua conexão.')
+      setError("Houve um problema de rede, por favor, verifique sua conexão.");
       setTimeout(async () => {
         setLoading(false);
       }, 300);
@@ -71,7 +71,10 @@ const Signin = ({ setUser, setToken, history }) => {
       <Background />
       <Container>
         <div className="content full-overlay">
-          <LogoImage src={process.env.PUBLIC_URL + "/assets/images/logo.svg"} alt="Logo Delivery" />
+          <LogoImage
+            src={process.env.PUBLIC_URL + "/assets/images/logo.svg"}
+            alt="Logo Delivery"
+          />
 
           <StyledForm
             schema={schema}
@@ -99,9 +102,7 @@ const Signin = ({ setUser, setToken, history }) => {
               Entrar
             </button>
             <div style={{ minHeight: 200 }}>
-              <span className="text-justify">
-                {error}
-              </span>
+              <span className="text-justify">{error}</span>
             </div>
           </StyledForm>
         </div>
