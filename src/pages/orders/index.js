@@ -13,7 +13,7 @@ const Orders = ({ user, token }) => {
 
   useEffect(() => {
     api.get('/orders').then(({data}) => {
-      setOrders(data)
+      setOrders(data.sort((a, b) => moment(b.order_date) - moment(a.order_date)))
       setLoading(false)
     })
   }, [])
