@@ -1,6 +1,6 @@
 import React from "react";
 // import logo from "images/logo.png";
-const NavBar = () => {
+const NavBar = ({ user }) => {
   return (
     <header
       className="navbar"
@@ -22,7 +22,7 @@ const NavBar = () => {
           <div className="column">
             <div className="columns">
               <span className="column col-12 text-light text-right">
-                Diego Fernandes
+                {user.name}
               </span>
               <a href="/" className="column col-12 text-gray text-right">
                 Sair do app
