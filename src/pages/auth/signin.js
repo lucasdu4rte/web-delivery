@@ -42,6 +42,10 @@ const Signin = ({ setUser, setToken, history }) => {
         setLoading(false);
         setUser(responseData.user);
         setToken(responseData.token);
+
+        localStorage.setItem('@Delivery:token', JSON.stringify(responseData.token))
+        localStorage.setItem('@Delivery:user', JSON.stringify(responseData.user))
+
         history.push("/pedidos");
       }, 300);
     } catch (error) {

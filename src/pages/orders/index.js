@@ -30,9 +30,10 @@ const Orders = ({ user, token }) => {
   }, []);
 
   console.log("orders", orders);
+
   return (
     <>
-      <NavBar />
+      <NavBar user={user} />
       <div className="container mb-2">
         <div className="columns">
           <div className="column col-8 col-mx-auto p-2 mt-2">
@@ -68,7 +69,7 @@ const Orders = ({ user, token }) => {
                   <div className="divider" />
                   <div className="columns">
                     {order.products.map(product => (
-                      <div key={product.id} className="column col-6">
+                      <div key={product.id} className="column col-4">
                         <div
                           className="tile p-2"
                           style={{ border: "1px solid #f1f2f6" }}

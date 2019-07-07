@@ -12,8 +12,11 @@ const { Consumer, Provider } = createContext({
 export const AuthConsumer = Consumer
 
 export const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState(null);
-  const [user, setUser] = useState(null)
+  const tokenStorage = JSON.parse(localStorage.getItem('@Delivery:token'))
+  const userStorage = JSON.parse(localStorage.getItem('@Delivery:user'))
+
+  const [token, setToken] = useState(tokenStorage);
+  const [user, setUser] = useState(userStorage)
 
   const value = {
     token,
