@@ -90,7 +90,7 @@ const Orders = ({ user, token }) => {
                               {product.description}
                             </div>
                             <small className="tile-subtitle">
-                              Tamanho: Média
+                              Tamanho: {product.size.description}
                             </small>
                           </div>
                         </div>
