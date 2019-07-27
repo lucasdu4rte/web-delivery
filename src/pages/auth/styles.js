@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { Form, Input } from "@rocketseat/unform";
+import styled from 'styled-components';
+import { Form, Input } from '@rocketseat/unform';
 // import fundo from "images/fundo.jpg";
 
 export const Background = styled.div`
@@ -9,7 +9,7 @@ export const Background = styled.div`
   height: 100%;
 
   background: black;
-  background-image: url(${process.env.PUBLIC_URL + 'assets/images/fundo.jpg'});
+  background-image: url(${`${process.env.PUBLIC_URL}assets/images/fundo.jpg`});
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -18,7 +18,11 @@ export const Background = styled.div`
 export const Container = styled.div`
   height: 100%;
 
-  background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(0,0,0,1) 90%); /* w3c */
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(0, 0, 0, 1) 90%
+  ); /* w3c */
 
   display: flex;
   align-items: center;

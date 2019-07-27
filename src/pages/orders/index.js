@@ -1,27 +1,27 @@
-import React, { useState, useEffect } from "react";
-import NavBar from "components/NavBar";
-import api from "api";
+import React, { useState, useEffect } from 'react';
+import NavBar from 'components/NavBar';
+import api from 'api';
 // import pizza from 'images/Pizzas/1.png'
-import moment from "moment";
-import "moment/locale/pt-br";
+import moment from 'moment';
+import 'moment/locale/pt-br';
 
-moment.locale("pt-br");
+moment.locale('pt-br');
 
 const Orders = ({ user, token }) => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    api.get("/orders").then(({ data }) => {
+    api.get('/orders').then(({ data }) => {
       setOrders(
         data
           .map(order => ({
             ...order,
-            totalFormated: new Intl.NumberFormat("pt-br", {
-              style: "currency",
-              currency: "BRL"
+            totalFormated: new Intl.NumberFormat('pt-br', {
+              style: 'currency',
+              currency: 'BRL',
             }).format(order.total),
-            orderDateFormated: moment(order.order_date).fromNow()
+            orderDateFormated: moment(order.order_date).fromNow(),
           }))
           .sort((a, b) => moment(b.order_date) - moment(a.order_date))
       );
@@ -29,7 +29,7 @@ const Orders = ({ user, token }) => {
     });
   }, []);
 
-  console.log("orders", orders);
+  console.log('orders', orders);
 
   return (
     <>
@@ -40,7 +40,7 @@ const Orders = ({ user, token }) => {
             <strong>Últimos pedidos</strong>
             <br />
 
-            {loading && "Carregando..."}
+            {loading && 'Carregando...'}
 
             {orders.map(order => (
               <div
@@ -48,7 +48,7 @@ const Orders = ({ user, token }) => {
                 className="card mt-2"
                 style={{
                   border: 0,
-                  boxShadow: "0 0.25rem 1rem rgba(48,55,66,.15)"
+                  boxShadow: '0 0.25rem 1rem rgba(48,55,66,.15)',
                 }}
               >
                 <div className="card-header">
@@ -58,7 +58,7 @@ const Orders = ({ user, token }) => {
                   {/* há 2 segundos */}
                   <small className="card-subtitle text-gray">
                     {order.orderDateFormated}
-                  </small>{" "}
+                  </small>{' '}
                   <br />
                   <strong className="card-subtitle text-dark">
                     {order.totalFormated}
@@ -72,7 +72,7 @@ const Orders = ({ user, token }) => {
                       <div key={product.id} className="column col-4">
                         <div
                           className="tile p-2"
-                          style={{ border: "1px solid #f1f2f6" }}
+                          style={{ border: '1px solid #f1f2f6' }}
                         >
                           <div className="tile-icon">
                             <div className="">
