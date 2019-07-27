@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import NavBar from 'components/NavBar';
 import api from 'api';
-// import pizza from 'images/Pizzas/1.png'
+import { useSelector } from 'react-redux';
+
 import moment from 'moment';
 import 'moment/locale/pt-br';
 
 moment.locale('pt-br');
 
-const Orders = ({ user, token }) => {
+const Orders = () => {
+  const user = useSelector(state => state.user.profile);
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
 
