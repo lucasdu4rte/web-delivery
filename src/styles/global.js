@@ -1,6 +1,6 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
-import './spectre.scss'
+import './spectre.scss';
 
 const GlobalStyle = createGlobalStyle`
   *{
