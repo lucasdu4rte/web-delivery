@@ -9,7 +9,12 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     outline: 0;
   }
-  html, body {
+
+  *:focus {
+    outline: 0;
+  }
+
+  html, body, #root {
     height: 100%;
   }
   body{
@@ -17,7 +22,6 @@ const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased !important;
   }
   #root {
-    height: 100%;
     button::-moz-focus-inner {
       border: 0;
     }
