@@ -7,15 +7,23 @@ const initialState = {
 };
 
 export default (state = initialState, { type, payload }) => {
-  switch (type) {
-    case '@auth/SIGN_IN_SUCCESS':
-      return produce(state, draft => {
+  return produce(state, draft => {
+    switch (type) {
+      case '@auth/SIGN_IN_REQUEST': {
+        draft.loading = true;
+        break;
+      }
+      case '@auth/SIGN_IN_SUCCESS': {
         draft.token = payload.token;
         draft.signed = true;
         draft.loading = false;
-      });
-
-    default:
-      return state;
-  }
+        break;
+      }
+      case '@auth/SIGN_IN_FAILURE': {
+        draft.loading = false;
+        break;
+      }
+      default:
+    }
+  });
 };
