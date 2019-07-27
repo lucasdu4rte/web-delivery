@@ -1,9 +1,16 @@
 import React from 'react';
-// import logo from "images/logo.png";
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-const NavBar = ({ user }) => {
+import { signOut } from 'store/modules/auth/actions';
+
+const NavBar = () => {
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.user.profile);
+
+  function handleSignOut() {
+    dispatch(signOut());
+  }
+
   return (
     <header
       className="navbar"
@@ -27,9 +34,15 @@ const NavBar = ({ user }) => {
               <span className="column col-12 text-light text-right">
                 {user.name}
               </span>
-              <a href="/" className="column col-12 text-gray text-right">
-                Sair do app
-              </a>
+              <div className="column col-12 text-right">
+                <button
+                  type="button"
+                  onClick={handleSignOut}
+                  className="btn btn-link text-gray"
+                >
+                  Sair do app
+                </button>
+              </div>
             </div>
           </div>
           <div className="divider-vert" />
@@ -44,8 +57,4 @@ const NavBar = ({ user }) => {
   );
 };
 
-const mapStateToProps = state => ({
-  user: state.user.profile,
-});
-
-export default connect(mapStateToProps)(NavBar);
+export default NavBar;
