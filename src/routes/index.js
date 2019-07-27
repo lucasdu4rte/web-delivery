@@ -1,13 +1,13 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
+import { Router, Switch } from 'react-router-dom';
 import Signin from 'pages/auth/signin';
 import Orders from 'pages/orders';
 import { AuthConsumer } from 'providers/AuthComponent';
-import PrivateRoute from './privateRoute';
+import history from 'services/history';
+import Route from './Route';
 
 const AllRoutes = () => (
-  <Router>
+  <Router history={history}>
     <Switch>
       <AuthConsumer>
         {props => (
@@ -17,7 +17,8 @@ const AllRoutes = () => (
               path="/"
               component={routeProps => <Signin {...props} {...routeProps} />}
             />
-            <PrivateRoute
+            <Route
+              isPrivate
               {...props}
               exact
               path="/pedidos"
